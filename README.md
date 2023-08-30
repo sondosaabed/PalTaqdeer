@@ -1,2 +1,1 @@
-# PalTaqdeer
-PalTaqdeer is an AI-Driven Student Success Forecaster. Was developed using diffrent technologies, data analysis techniques were applied, Linear regression model is build and Flask is used to build the website.
+![image](https://github.com/sondosaabed/PalTaqdeer/assets/65151701/20e4c31d-5504-4154-ac80-5ba7f1394b7a)
