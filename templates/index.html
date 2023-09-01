@@ -1,0 +1,238 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> PalTaqdeer </title>
+    <script src="/static/assets/js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css" />
+    <script src="/static/assets/js/bootstrap.min.js"></script>
+    <link href="/static/assets/css/style.css" rel="stylesheet" />
+    <script src="/static/assets/js/ajax.js"></script>
+    <style>
+      .trigge{
+      text-align: center;
+    padding: 7px 13px;
+    background: #3e3e3e;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.moda {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem 1.5rem;
+    width: 24rem;
+    border-radius: 0.5rem;
+}
+
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    z-index: 100;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+    </style>
+
+</head>
+
+<body >
+    <div class="login-root">
+        <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
+            <div class="loginbackground box-background--white padding-top--64">
+                <div class="loginbackground-gridContainer">
+                    <div class="box-root flex-flex" style="grid-area: top / start / 8 / end;">
+                        <div class="box-root"
+                            style="background-image: linear-gradient(white 0%, rgb(247, 250, 252) 33%); flex-grow: 1;">
+                        </div>
+                    </div>
+                    <div class="box-root flex-flex" style="grid-area: 4 / 2 / auto / 5;">
+                        <div class="box-root box-divider--light-all-2 animationLeftRight tans3s" style="flex-grow: 1;">
+                        </div>
+                    </div>
+                    <div class="box-root flex-flex" style="grid-area: 6 / start / auto / 2;">
+                        <div class="box-root box-background--blue800" style="flex-grow: 1;"></div>
+                    </div>
+                    <div class="box-root flex-flex" style="grid-area: 7 / start / auto / 4;">
+                        <div class="box-root box-background--blue animationLeftRight" style="flex-grow: 1;"></div>
+                    </div>
+                    <div class="box-root flex-flex" style="grid-area: 8 / 4 / auto / 6;">
+                        <div class="box-root box-background--gray100 animationLeftRight tans3s" style="flex-grow: 1;">
+                        </div>
+                    </div>
+                    <div class="box-root flex-flex" style="grid-area: 2 / 15 / auto / end;">
+                        <div class="box-root box-background--cyan200 animationRightLeft tans4s" style="flex-grow: 1;">
+                        </div>
+                    </div>
+                    <div class="box-root flex-flex" style="grid-area: 3 / 14 / auto / end;">
+                        <div class="box-root box-background--blue animationRightLeft" style="flex-grow: 1;"></div>
+                    </div>
+                    <div class="box-root flex-flex" style="grid-area: 4 / 17 / auto / 20;">
+                        <div class="box-root box-background--gray100 animationRightLeft tans4s" style="flex-grow: 1;">
+                        </div>
+                    </div>
+                    <div class="box-root flex-flex" style="grid-area: 5 / 14 / auto / 17;">
+                        <div class="box-root box-divider--light-all-2 animationRightLeft tans3s" style="flex-grow: 1;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
+                <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
+                    <img src="/static/assets/img/final.png" width="400px">
+                </div>
+                <div class="formbg-outer">
+                    <div class="formbg">
+                        <div class="formbg-inner padding-horizontal--48">
+                            <span class="padding-bottom--15" style="text-align: center;">Fill The Student Information</span>
+                            <form id="stripe-login">
+                                <div class="field padding-bottom--15 mt-3">
+                                    <label for="number">How old are you ?</label>
+                                    <input type="number" id="age" name="age" placeholder="15 - 22" min="15" max="22"
+                                        required>
+                                </div>
+                                <div class="field padding-bottom--15 mt-2">
+                                    <label for="medu" style="width:352">Mother Education:</label>
+                                    <select name="medu" id="medu"
+                                        style="width: 350px; height: 37; border-radius: 4px; outline-color: #17db21;"
+                                        required>
+                                        <option value="" disabled selected>Choose</option>
+                                        <option value="0">No Education</option>
+                                        <option value="1">Primary Education</option>
+                                        <option value="2">5th to 9th grade</option>
+                                        <option value="3">Secandary Education</option>
+                                        <option value="4">Higher Education</option>
+                                    </select>
+                                </div>
+                                <div class="list mt-2">
+                                    <label for="cars">Father Education:</label>
+                                    <select
+                                        style="width: 350px; height: 37; border-radius: 4px; outline-color: #17db21;"
+                                        name="fedu" id="fedu" required>
+                                        <option value="" disabled selected>Choose</option>
+                                        <option value="0">No Education</option>
+                                        <option value="1">Primary Education</option>
+                                        <option value="2">5th to 9th grade</option>
+                                        <option value="3">Secandary Education</option>
+                                        <option value="4">Higher Education</option>
+                                    </select>
+                                </div>
+                                <div class="field padding-bottom--15 mt-3">
+                                    <label for="number">How many time did you fail ?</label>
+                                    <input type="number" min="0" max="4" step="1"
+                                        placeholder="0 - 4" name="failures" id="failures" required>
+                                </div>
+                                <div class="mt-3">
+                                    <label for="number">Do you aim to Higher Education ?</label>
+                                    <div class="control row my-3">
+                                        <label class="radio col-6">
+                                            <input type="radio" name="higher" id="higher" value="1"
+                                                required>
+                                            Yes
+                                        </label>
+                                        <label class="radio col-6">
+                                            <input type="radio" name="higher" id="higher" value="0"
+                                                required>
+                                            No
+                                        </label>
+                                    </div>
+                                    <label for="number">Are you in a realationship ?</label>
+                                    <div class="control row mt-3">
+                                        <label class="radio col-6">
+                                            <input type="radio" name="romantic" id="romantic" value="1"
+                                                required>
+                                            Yes
+                                        </label>
+                                        <label class="radio col-6">
+                                            <input type="radio" name="romantic" id="romantic" value="0"
+                                                required>
+                                            No
+                                        </label>
+                                    </div>
+                                    </br>
+                                    <div class="field padding-bottom--15 ">
+                                        <label for="number">First Period Grade</label>
+                                        <input type="number" min="0" max="20" step="1"
+                                            name="g1" id="g1" placeholder="0 - 20">
+                                    </div>
+                                    <div class="field padding-bottom--15">
+                                        <label for="number">Second Period Grade</label>
+                                        <input type="number" min="0" max="20" step="1"
+                                            name="g2" id="g2" placeholder="0 - 20">
+                                    </div>
+                                    <div class="field padding-bottom--15">
+                                        <label for="number">How often do you hang out ?</label>
+                                        <input type="number" min="1" max="5" step="1"
+                                            name="gouout" id="gouout" placeholder="1 - 5">
+                                    </div>
+                                    <div class="field padding-bottom--24">
+                                        <div class="field padding-bottom--24 mt-5">
+                                            <button type="submit" name="submit" class="btn btn-default trigge">Predict the grade</button>
+                                        </div>
+                                    </div>
+                            </form>
+                            <div class="moda">
+                              <div class="modal-content">
+                                  <h1 id="rslt"></h1>
+                                  <video loading="lazy" id="fail" muted="muted" src="/static/assets/img/boy-learning-maths-9565968-7813551.mp4" type="video/mp4" autoplay="autoplay" loop="loop" style="display: none;"></video>
+                                  <video loading="lazy" id="scss" muted="muted" src="/static/assets/img/math-lesson-9565967-7813550.mp4" type="video/mp4" autoplay="autoplay" loop="loop" style="display: none;"></video>
+                                  <h1 id="score"></h1>
+                              </div>
+                          </div>
+                        </div>
+                        <!-- {% if predicted %} -->
+                        <!-- <div class="field padding-bottom--24 modal-dialog modal-dialog-centered"
+                            style="text-align: center; font-weight: 600;">
+                            <p class="text-center" id="grade"> the grade is {{ grade }}</p>
+                            </div> -->
+                    </div>
+                        <!-- {% endif %} -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+      var modal = document.querySelector(".moda");
+      var trigger = document.querySelector(".trigge");
+
+      function toggleModal() {
+          modal.classList.toggle("show-modal");
+      }
+
+      function windowOnClick(event) {
+          if (event.target === modal) {
+              toggleModal();
+          }
+      }
+
+      trigger.addEventListener("click", toggleModal);
+      window.addEventListener("click", windowOnClick);
+
+    </script>
+
+</body>
+
+</html>
