@@ -4,12 +4,13 @@
     <meta charset="utf-8">
     <title> PalTaqdeer </title>
     <script src="/static/assets/js/jquery-3.7.1.min.js"></script>
+    <script src="/static/assets/js/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css" />
     <script src="/static/assets/js/bootstrap.min.js"></script>
     <link href="/static/assets/css/style.css" rel="stylesheet" />
     <script src="/static/assets/js/ajax.js"></script>
     <style>
-      .trigge{
+      .trigge, .trigg2{
       text-align: center;
     padding: 7px 13px;
     background: #3e3e3e;
@@ -19,11 +20,14 @@
     border: none;
     border-radius: 5px;
     position: absolute;
-    left: 50%;
+    left: 40%;
     transform: translateX(-50%);
 }
+    .trigg2{
+        left: 60%;
+    }
 
-.moda {
+.moda, .modx {
     position: fixed;
     left: 0;
     top: 0;
@@ -53,6 +57,25 @@
     transform: scale(1.0);
     transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
+    table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+
+        .even {
+          background-color: #dddddd;
+        }
+
+        thead tr{
+          background-color: #888;
+        }
 
     </style>
 
@@ -191,15 +214,97 @@
                                     <div class="field padding-bottom--24">
                                         <div class="field padding-bottom--24 mt-5">
                                             <button type="submit" name="submit" class="btn btn-default trigge">Predict the grade</button>
+                                            <button class="trigg2">Show Last Results</button>
                                         </div>
                                     </div>
                             </form>
                             <div class="moda">
                               <div class="modal-content">
                                   <h1 id="rslt"></h1>
+                                  <div id="errorAlert" class="alert alert-danger" role="alert" style="display:none;"></div>
                                   <video loading="lazy" id="fail" muted="muted" src="/static/assets/img/boy-learning-maths-9565968-7813551.mp4" type="video/mp4" autoplay="autoplay" loop="loop" style="display: none;"></video>
                                   <video loading="lazy" id="scss" muted="muted" src="/static/assets/img/math-lesson-9565967-7813550.mp4" type="video/mp4" autoplay="autoplay" loop="loop" style="display: none;"></video>
                                   <h1 id="score"></h1>
+                              </div>
+                          </div>
+                            <div class="modx">
+                              <div class="modal-content" style="width: 90%; max-height: 90%; overflow-y: auto;">
+                                <h1 class="text-center">Last Results</h1>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Age</th>
+                                            <th>Mother Education</th>
+                                            <th>Mother Education</th>
+                                            <th>Past Failures</th>
+                                            <th>Intent to High Education</th>
+                                            <th>Realationship</th>
+                                            <th>G1</th>
+                                            <th>G2</th>
+                                            <th>Hang Out</th>
+                                        </tr>
+                                    </thead>
+                                {% for a , b , c , d , e , f , h , i , j  in data %}
+                                    <tbody>
+                                        <tr>
+                                        {%- if loop.index % 2 == 0 %}
+                                        {%- set even = "even" -%}
+                                        {%- else %}
+                                        {%- set even = "" -%}
+                                        {% endif %}
+
+                                        {%- if b == 0 -%}
+                                        {%- set b = "No Education" -%}
+                                        {%- elif b == 1 -%}
+                                        {%- set b = "Primary Education" -%}
+                                        {%- elif b == 2 -%}
+                                        {%- set b = "5th to 9th grade" -%}
+                                        {%- elif b == 3 -%}
+                                        {%- set b = "Secandary Education" -%}
+                                        {%- elif b == 4 -%}
+                                        {%- set b = "Higher Education" -%}
+                                        {% endif %}
+
+                                        {%- if c == 0 -%}
+                                        {%- set c = "No Education" -%}
+                                        {%- elif c == 1 -%}
+                                        {%- set c = "Primary Education" -%}
+                                        {%- elif c == 2 -%}
+                                        {%- set c = "5th to 9th grade" -%}
+                                        {%- elif c == 3 -%}
+                                        {%- set c = "Secandary Education" -%}
+                                        {%- elif c == 4 -%}
+                                        {%- set c = "Higher Education" -%}
+                                        {% endif %}
+
+                                        {%- if e == 0 -%}
+                                        {%- set e = "No" -%}
+                                        {%- elif e == 1 -%}
+                                        {%- set e = "Yes" -%}
+                                        {% endif %}
+
+                                        {%- if f == 0 -%}
+                                        {%- set f = "No" -%}
+                                        {%- elif f == 1 -%}
+                                        {%- set f = "Yes" -%}
+                                        {% endif %}
+
+
+                                            <td class="{{ even }}">{{ loop.index }}</td>
+                                            <td class="{{ even }}">{{a}}</td>
+                                            <td class="{{ even }}">{{b}}</td>
+                                            <td class="{{ even }}">{{c}}</td>
+                                            <td class="{{ even }}">{{d}}</td>
+                                            <td class="{{ even }}">{{e}}</td>
+                                            <td class="{{ even }}">{{f}}</td>
+                                            <td class="{{ even }}">{{h}}</td>
+                                            <td class="{{ even }}">{{i}}</td>
+                                            <td class="{{ even }}">{{j}}</td>
+                                        </tr>
+                                    </tbody>
+                                {% endfor %}
+                                </table>
                               </div>
                           </div>
                         </div>
@@ -216,10 +321,15 @@
     </div>
     <script>
       var modal = document.querySelector(".moda");
+      var moda2 = document.querySelector(".modx");
       var trigger = document.querySelector(".trigge");
+      var trigge2 = document.querySelector(".trigg2");
 
       function toggleModal() {
           modal.classList.toggle("show-modal");
+      }
+      function toggleModal2() {
+          moda2.classList.toggle("show-modal");
       }
 
       function windowOnClick(event) {
@@ -227,9 +337,15 @@
               toggleModal();
           }
       }
+      function windowOnClick2(event) {
+          if (event.target === moda2) {
+              toggleModal2();
+          }
+      }
 
       trigger.addEventListener("click", toggleModal);
-      window.addEventListener("click", windowOnClick);
+      trigge2.addEventListener("click", toggleModal2);
+      window.addEventListener("click", windowOnClick2);
 
     </script>
 
